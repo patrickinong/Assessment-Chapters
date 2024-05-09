@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petrol Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Petrol Calculator</h2>
+    <form id="petrolForm">
+        <label for="distance">Distance (in kilometers):</label>
+        <input type="number" id="distance" name="distance" required>
+
+        <label for="consumption">Average Consumption (liters per 100 kilometers):</label>
+        <input type="number" id="consumption" name="consumption" required>
+
+        <label for="price">Price per liter:</label>
+        <input type="number" id="price" name="price" required step="0.01">
+
+        <button type="button" onclick="calculatePetrol()">Calculate</button>
+    </form>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculatePetrol() {
+        var distance = parseFloat(document.getElementById("distance").value);
+        var consumption = parseFloat(document.getElementById("consumption").value);
+        var price = parseFloat(document.getElementById("price").value);
+
+        var totalLiters = (distance / 100) * consumption;
+        var totalPrice = totalLiters * price;
+
+        document.getElementById("result").innerHTML = "Total fuel needed: " + totalLiters.toFixed(2) + " liters<br>Total cost: $" + totalPrice.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
